@@ -6,8 +6,8 @@ body, h1, ul {
 
 /* Set a background color */
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f0f0f0;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: #f6f8fa;
 }
 
 /* Navbar */
@@ -41,87 +41,140 @@ body {
 
 /* Product Grid */
 .product-grid {
-    display:flex;
-    flex-direction: column;
-    width: 100vw;
-    align-items: center;
-    justify-content: center;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 32px;
+    max-width: 1200px;
+    margin: 32px auto;
+    padding: 0 16px;
 }
-.product-list {
+
+.category-section {
+    background: #fff;
+    border-radius: 18px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+    padding: 32px 24px 24px 24px;
+    margin-bottom: 16px;
+}
+
+.category-section h2 {
+    margin-top: 0;
+    margin-bottom: 24px;
+    font-size: 2rem;
+    color: #388e3c;
+    border-left: 5px solid #4CAF50;
+    padding-left: 12px;
+    letter-spacing: 1px;
+}
+
+.plants-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 32px;
+}
+
+.plant-card {
+    background: #f9f9f9;
+    border-radius: 14px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    padding: 20px 16px 24px 16px;
     display: flex;
-    flex-wrap: wrap;
-    gap: 50px;
-    /* background-color: pink; */
-    /* justify-content: space-between; */
-    padding: 20px;
-    width: 100%;
+    flex-direction: column;
     align-items: center;
-    justify-content: center;
+    transition: box-shadow 0.2s, transform 0.2s;
+    min-width: 0;
 }
 
-/* Product Card */
-.product-card {
-    flex: 0 0 calc(33.33% - 20px); /* Adjust width for 3 cards per row with 20px gap */
-    max-width: calc(26.33% - 20px); /* Adjust max-width for 3 cards per row with 20px gap */
-    margin-bottom: 20px;
-    padding: 20px;
-    background-color: #fff;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    text-align: center;
-    position: relative;
-    
-    gap: 20px;
+.plant-card:hover {
+    box-shadow: 0 4px 16px rgba(76,175,80,0.15);
+    transform: translateY(-4px) scale(1.03);
 }
 
-/* Pseudo-classes - Hover effect on product button */
-.product-card:hover {
-    transform: scale(1.05);
-    transition: transform 0.3s ease-in-out;
-    z-index: 1;
+.plant-card img {
+    width: 100%;
+    max-width: 180px;
+    height: 160px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 16px;
+    background: #e8f5e9;
 }
 
-.product-title {
-    font-weight: bold;
-    margin-bottom: 10px;
-}
-
-.product-price {
-    color: #e74c3c;
+.plant-card h3 {
+    margin: 0 0 8px 0;
     font-size: 1.2rem;
+    color: #222;
+    font-weight: 600;
+}
+
+.plant-card p {
+    margin: 0 0 8px 0;
+    color: #444;
+    font-size: 1rem;
+    text-align: center;
+}
+
+.plant-card .price {
+    color: #388e3c;
+    font-size: 1.1rem;
+    font-weight: 700;
     margin-bottom: 10px;
 }
 
-.product-image {
-    max-width: 100%;
-    height: 200px; /* Adjust height for better consistency */
-}
-
-.product-button {
-    background-color: #e74c3c;
+.plant-card button {
+    background: #4CAF50;
     color: #fff;
     border: none;
-    padding: 10px 20px;
+    border-radius: 6px;
+    padding: 10px 22px;
+    font-size: 1rem;
+    font-weight: 500;
     cursor: pointer;
-    transition: background-color 0.3s ease-in-out;
-    margin-top: 10px;
+    margin-top: 8px;
+    transition: background 0.2s, box-shadow 0.2s;
+    box-shadow: 0 1px 4px rgba(76,175,80,0.08);
 }
 
-.product-button:hover {
-    background-color: #c0392b;
+.plant-card button:hover:not(:disabled) {
+    background: #388e3c;
 }
 
-/* Pseudo-elements - Sale badge */
-.product-card::before {
-    content: "SALE";
-    background-color: #e74c3c;
+.plant-card button:disabled,
+.plant-card button.added-to-cart {
+    background: #bdbdbd;
     color: #fff;
-    position: absolute;
-    top: 0;
-    right: 0;
-    padding: 5px 10px;
-    border-radius: 0 0 0 5px;
+    cursor: not-allowed;
 }
+
+@media (min-width: 600px) {
+    .product-grid {
+        grid-template-columns: 1fr;
+    }
+    .plants-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 900px) {
+    .plants-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    nav ul {
+        flex-direction: column;
+        gap: 10px;
+    }
+    .category-section {
+        padding: 16px 6px 12px 6px;
+    }
+    .plant-card img {
+        max-width: 100%;
+        height: 120px;
+    }
+}
+
 .tag_home_link{
     display: flex;
     /* background-color: red; */
